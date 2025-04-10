@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+function getdatabypromise(id){
+    return new Promise((response,rej)=>{
+        setTimeout(() => {
+            console.log("Your number is ",id);
+            response(200)
+        }, 2000);
+    })
+}
+
+console.log("getting data 1...");
+
+getdatabypromise(1).
+                    then((response)=>{
+                        console.log("getting data 2...");
+                        getdatabypromise(2)
+                    })
+                    .then((response)=>{
+                        console.log("getting data3 ...");
+                        getdatabypromise(3)
+                    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const handler = ()=>{
+    return new Promise((state1,state2)=>{
+        setTimeout(()=>{
+            console.log("Inside the time out 1");
+            state1("resolved 1")
+        },2000)
+    })
+}
+console.log("Fecthing data1 ...");
+const handler2 = ()=>{
+    return new Promise((state1,state2)=>{
+        setTimeout(()=>{
+            console.log("Inside the time out2 ");
+            state1("resolved2")
+        },5000)
+    })
+}
+
+const handler3 = ()=>{
+    return new Promise((state1,state2)=>{
+        setTimeout(()=>{
+            console.log("Inside the time out3 ");
+            state1("resolved3")
+        },5000)
+    })
+}
+
+let ob1 = handler()
+ob1.then((data)=>{
+    console.log("The response we get is:",data);
+    console.log("Fecthing data2 ...");
+    let ob2 = handler2()
+    ob2.then((data2)=>{
+        console.log("The response we get is:",data2);
+        console.log("Fecthing data3 ...");
+        handler3().then((data3)=>{
+            console.log("The response we get is:",data3);  
+        })
+    })
+})
+    </script>
+</body>
+</html>
